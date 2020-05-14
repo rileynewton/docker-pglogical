@@ -2,6 +2,8 @@ version: "2"
 
 services:
   primary:
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
     build: ./pg
     container_name: pglogical
     networks:

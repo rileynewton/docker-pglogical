@@ -18,5 +18,6 @@ RUN echo "shared_preload_libraries = 'pglogical'" >> /usr/share/postgresql/postg
 RUN echo "wal_level = 'logical'" >> /usr/share/postgresql/postgresql.conf.sample
 RUN echo "max_wal_senders = 20" >> /usr/share/postgresql/postgresql.conf.sample
 RUN echo "max_replication_slots = 20" >> /usr/share/postgresql/postgresql.conf.sample
+RUN echo "max_connections = 300" >> /usr/share/postgresql/postgresql.conf.sample
 
 COPY primary.sql /docker-entrypoint-initdb.d/init.sql
