@@ -1,6 +1,6 @@
 # Postgres/PGLogical Image
 
-A ready-made, batteries-included Docker image combining Postgres 9.4 with pglogical.
+A ready-made, batteries-included Docker image combining Postgres 11 with pglogical.
 
 ## Requirements
 
