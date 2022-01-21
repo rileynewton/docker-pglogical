@@ -1,14 +1,16 @@
 FROM postgres:11
-MAINTAINER Justin Holguin <justin.holguin@puppet.com>
+MAINTAINER Steve Axthelm <steve@puppet.com>
 
-RUN apt-get update && apt-get install -y wget gnupg
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
-  && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
-       apt-key add - \
-  && echo "deb [arch=amd64] http://packages.2ndquadrant.com/pglogical/apt/ stretch-2ndquadrant main" > /etc/apt/sources.list.d/2ndquadrant.list \
-  && wget --quiet -O - http://packages.2ndquadrant.com/pglogical/apt/AA7A6805.asc | apt-key add - \
-  && apt-get update \
-  && apt-get install -y postgresql-11-pglogical
+RUN apt update
+RUN apt install curl -y
+RUN apt install ca-certificates gnupg -y
+RUN curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | \
+  tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null
+
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt stretch-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+
+RUN apt update
+RUN apt-get install postgresql-11-pglogical
 
 # VOLUME /var/lib/postgresql/data # re-volume this so that the config file changes take???
 
