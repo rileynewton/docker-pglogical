@@ -1,4 +1,4 @@
-FROM postgres:11
+FROM postgres:11-bullseye
 MAINTAINER Steve Axthelm <steve@puppet.com>
 
 RUN apt update
@@ -7,7 +7,7 @@ RUN apt install ca-certificates gnupg -y
 RUN curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | \
   tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null
 
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt stretch-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt bullseye-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 RUN apt update
 RUN apt-get install postgresql-11-pglogical
